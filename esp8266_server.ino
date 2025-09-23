@@ -6,8 +6,8 @@ Servo servo1;
 ESP8266WebServer server(80);
 
 String html = "<h1>ESP Web Server</h1><p>Servo switch <a href=\"Servo_On\"><button>ON</button></a>&nbsp;<a href=\"Servo_Off\"><button>OFF</button></a></p>";
-const char* ssid = "PWNED";
-const char* password = "04091977";
+const char* ssid = "[REDACTED]";
+const char* password = "[REDACTED]";
 
 void setup(void) {
   servo1.attach(2);
