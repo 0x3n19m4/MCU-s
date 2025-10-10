@@ -1,10 +1,21 @@
 void transmit()
 {
-    Serial.println("Hello World");
-    delay(1000);
+  while (1)
+  {
+    delay(3000);
+    
+    Serial.print(1);
+    digitalWrite(2, HIGH);
+    
+    delay(3000);
+
+    digitalWrite(2, LOW);
+    Serial.print(2); 
+  }
 }
 
 void setup() {
+  pinMode(2, OUTPUT);
   Serial.begin(9600);
 }
 
