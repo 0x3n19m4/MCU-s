@@ -112,9 +112,7 @@ int main(void)
     EEPROM_write_byte(0x10, BYTE);
     uint8_t value = EEPROM_read_byte(0x10);
 
-    uint8_t expected = BYTE;
-
-    if (value == expected)
+    if (value == BYTE)
         blink_n(SUCCESS);
     else
         blink_n(FAULT);
@@ -124,5 +122,6 @@ int main(void)
         
     }
 }
+
 
 
