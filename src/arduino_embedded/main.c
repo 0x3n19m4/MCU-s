@@ -105,6 +105,8 @@ int main(void)
     //     _delay_ms(500);
     // }
 
+    DDRB |= (1 << PB5);
+    
     i2c_init();
 
     EEPROM_write_byte(0x10, BYTE);
@@ -122,4 +124,5 @@ int main(void)
         
     }
 }
+
 
