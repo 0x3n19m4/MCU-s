@@ -12,6 +12,11 @@
 
 #define F_CPU 16000000UL
 #define EEPROM_ADDR 0x50
+#define BYTE 0xAB
+#define OUT_LED PB5
+
+#define SUCCESS 2
+#define FAULT 3
 
 void i2c_init(void)
 {
@@ -78,6 +83,18 @@ uint8_t EEPROM_read_byte(uint8_t addr)
     return data;
 }
 
+void blink_n(uint8_t n)
+{
+  for (int i = 0; i < n; i++)
+  {
+    PORTB |= (1 << OUT_LED);
+    _delay_ms(200);
+
+    PORTB &= ~(1 << OUT_LED);
+    _delay_ms(200);
+  }
+}
+
 int main(void)
 {
     // DDRB |= (1 << PB5);
@@ -90,12 +107,19 @@ int main(void)
 
     i2c_init();
 
-    EEPROM_write_byte(0x10, 0xAB);
-
+    EEPROM_write_byte(0x10, BYTE);
     uint8_t value = EEPROM_read_byte(0x10);
+
+    uint8_t expected = BYTE;
+
+    if (value == expected)
+        blink_n(SUCCESS);
+    else
+        blink_n(FAULT);
 
     while (1)
     {
         
     }
 }
+
